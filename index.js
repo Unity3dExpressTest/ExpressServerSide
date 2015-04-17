@@ -13,10 +13,9 @@ app.get('/', function (req, res) {
   res.send('Hello World!');
 });
 
-//Returns all users except for the user given by the request
+//Returns all users id
 app.get('/users', function (req, res) {
-	console.log(req.body);
-	db.all("SELECT id FROM users WHERE id != " + req.body.id, function(err, rows) {
+	db.all("SELECT id FROM users", function(err, rows) {
 		console.log(rows);
 		var json = JSON.stringify(rows);
 		console.log(json);
