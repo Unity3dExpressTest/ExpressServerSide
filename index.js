@@ -15,7 +15,7 @@ app.get('/', function (req, res) {
 
 //Returns all users id
 app.get('/users', function (req, res) {
-	db.all("SELECT id FROM users", function(err, rows) {
+	db.all("SELECT id, name, x, y FROM users", function(err, rows) {
 		console.log(rows);
 		var json = JSON.stringify(rows);
 		console.log(json);
