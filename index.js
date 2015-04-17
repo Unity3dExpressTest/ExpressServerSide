@@ -28,8 +28,6 @@ app.get('/users', function(req, res) {
 
 //Adds user if user doesn't exist. Updates user if user exists
 app.post('/user', function(req, res){
-	console.log(req.body);
-
 	var stmt = db.prepare("INSERT OR REPLACE INTO users (id,name,x,y) VALUES (?, ?, ?, ?)");
 	stmt.run(req.body.id, req.body.name, req.body.x, req.body.y);
 	stmt.finalize();
