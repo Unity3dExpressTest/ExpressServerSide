@@ -13,12 +13,12 @@ app.get('/', function (req, res) {
   res.send('Hello World!');
 });
 
+//Returns all users except for the user given by the request
 app.get('/users', function(req, res) {
 	console(req.body);
-	var json;
-	db.all("SELECT location_ id, zipcode, image FROM locs", function(err, rows) {
+	db.all("SELECT id FROM users WHERE id != " + req.body.id, function(err, rows) {
 		console.log(rows);
-		json = JSON.stringify(rows);
+		var json = JSON.stringify(rows);
 		console.log(json);
 
 		res.type('text/plain');
@@ -34,11 +34,11 @@ app.post('/user', function(req, res){
 	stmt.run(req.body.id, req.body.name, req.body.x, req.body.y);
 	stmt.finalize();
 
-	console.log("Added User");
+	//console.log("Added User");
 	
-	db.each("SELECT id, name, x, y FROM users", function(err, row) {
-	  console.log(row.id + ": " + row.name + " loc: " + row.x + ", " + row.y);
-	});
+	// db.each("SELECT id, name, x, y FROM users", function(err, row) {
+	//   console.log(row.id + ": " + row.name + " loc: " + row.x + ", " + row.y);
+	// });
 
 	res.send(req.body);
 });
