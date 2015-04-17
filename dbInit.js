@@ -5,7 +5,7 @@ db.serialize(function() {
   console.log("Database Serialization Initializing...");
 
   //Setting up info tables
-  setupTable("users", "(id TEXT UNIQUE, name TEXT, x REAL, y REAL)");
+  setupTable("users", "(id TEXT UNIQUE, name TEXT, x TEXT, y TEXT)");
 
   testUsers();
 
@@ -15,7 +15,7 @@ db.serialize(function() {
 function testUsers() {
 	var stmt = db.prepare("INSERT INTO users VALUES (?, ?, ?, ?)");
 	for (var i = 0; i < 2; i++) {
-	  stmt.run("device-" + i, "name " + i, i*1.1, i*2.1);
+	  stmt.run("device-" + i, "name " + i, "" + i*1, "" + i*2);
 	}
 	stmt.finalize();
 

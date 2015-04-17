@@ -36,7 +36,7 @@ app.post('/user', function(req, res){
 
 	console.log("Added User");
 	
-	db.each("SELECT id, username FROM users", function(err, row) {
+	db.each("SELECT id, name, x, y FROM users", function(err, row) {
 	  console.log(row.id + ": " + row.name + " loc: " + row.x + ", " + row.y);
 	});
 
