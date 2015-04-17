@@ -14,8 +14,8 @@ app.get('/', function (req, res) {
 });
 
 //Returns all users except for the user given by the request
-app.get('/users', function(req, res) {
-	console(req.body);
+app.get('/users', function (req, res) {
+	console.log(req.body);
 	db.all("SELECT id FROM users WHERE id != " + req.body.id, function(err, rows) {
 		console.log(rows);
 		var json = JSON.stringify(rows);
@@ -27,7 +27,7 @@ app.get('/users', function(req, res) {
 });
 
 //Adds user if user doesn't exist. Updates user if user exists
-app.post('/user', function(req, res){
+app.post('/user', function (req, res) {
 	var stmt = db.prepare("INSERT OR REPLACE INTO users (id,name,x,y) VALUES (?, ?, ?, ?)");
 	stmt.run(req.body.id, req.body.name, req.body.x, req.body.y);
 	stmt.finalize();
