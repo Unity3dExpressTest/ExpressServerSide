@@ -43,6 +43,12 @@ app.post('/user', function(req, res){
 	res.send(req.body);
 });
 
+app.post('/test', function (req, res) {
+	console.log(req.body);
+
+	res.send(req.body);
+});
+
 var server = app.listen(80, function () {
   var host = server.address().address;
   var port = server.address().port;
