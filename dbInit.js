@@ -1,5 +1,5 @@
 var sqlite3 = require('sqlite3').verbose();
-var db = new sqlite3.Database('./trek.db');
+var db = new sqlite3.Database('./test.db');
 
 db.serialize(function() {
   console.log("Database Serialization Initializing...");
