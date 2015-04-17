@@ -15,11 +15,11 @@ db.serialize(function() {
 function testUsers() {
 	var stmt = db.prepare("INSERT INTO users VALUES (?, ?, ?, ?)");
 	for (var i = 0; i < 2; i++) {
-	  stmt.run("device-" + i, "name " + i, "" + i*1, "" + i*2);
+	  stmt.run("device-" + i, "name-" + i, "" + i*1, "" + i*2);
 	}
 	stmt.finalize();
 
-	db.each("SELECT id, name FROM users", function(err, row) {
+	db.each("SELECT id, name, x, y FROM users", function(err, row) {
 	  console.log(row.id + ": " + row.name + " loc: " + row.x + ", " + row.y);
 	});
 }
