@@ -15,7 +15,7 @@ app.get('/', function (req, res) {
 
 //Returns all users id
 app.get('/users', function (req, res) {
-	db.all("SELECT id, name, x, y FROM users", function(err, rows) {
+	db.all("SELECT id, x, y FROM users", function(err, rows) {
 		//console.log(rows);
 		var json = JSON.stringify(rows);
 		//console.log(json);
@@ -27,8 +27,8 @@ app.get('/users', function (req, res) {
 
 //Adds user if user doesn't exist. Updates user if user exists
 app.post('/user', function (req, res) {
-	var stmt = db.prepare("INSERT OR REPLACE INTO users (id,name,x,y) VALUES (?, ?, ?, ?)");
-	stmt.run(req.body.id, req.body.name, req.body.x, req.body.y);
+	var stmt = db.prepare("INSERT OR REPLACE INTO users (id,x,y) VALUES (?, ?, ?, ?)");
+	stmt.run(req.body.id, req.body.x, req.body.y);
 	stmt.finalize();
 
 	//console.log("Added User");
