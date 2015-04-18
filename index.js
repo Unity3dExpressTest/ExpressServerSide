@@ -16,9 +16,9 @@ app.get('/', function (req, res) {
 //Returns all users id
 app.get('/users', function (req, res) {
 	db.all("SELECT id, name, x, y FROM users", function(err, rows) {
-		console.log(rows);
+		//console.log(rows);
 		var json = JSON.stringify(rows);
-		console.log(json);
+		//console.log(json);
 
 		res.type('text/plain');
   		res.send(json);
@@ -41,7 +41,7 @@ app.post('/user', function (req, res) {
 });
 
 app.post('/test', function (req, res) {
-	console.log(req.body);
+	//console.log(req.body);
 
 	res.send(req.body);
 });
